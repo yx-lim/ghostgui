@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghostgui"
+version = "0.1.0"
+description = "A MuJoCo-based GUI for editing robot reference-frame and state trajectories."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "Nathan Lim"},
+]
+license = {file = "LICENSE"}
+keywords = [
+    "robotics",
+    "mujoco",
+    "trajectory",
+    "inverse-kinematics",
+    "pyside6",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "PySide6",
+    "PyOpenGL",
+    "numpy",
+    "mujoco",
+]
+
+[project.urls]
+Homepage = "https://github.com/yx-lim/ghostgui"
+Repository = "https://github.com/yx-lim/ghostgui"
+Documentation = "https://github.com/yx-lim/ghostgui/tree/main/docs"
+Issues = "https://github.com/yx-lim/ghostgui/issues"
+
+[project.scripts]
+ghostgui = "application.launcher:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "application*",
+    "core*",
+    "gui*",
+]
+exclude = [
+    "tests*",
+]
+
+[tool.setuptools.data-files]
+"share/ghostgui/models" = [
+    "models/*.urdf",
+    "models/*.xml",
+]
+"share/ghostgui/models/assets-g1" = [
+    "models/assets-g1/*.STL",
+    "models/assets-g1/*.stl",
+]
+"share/ghostgui/models/assets-go2" = [
+    "models/assets-go2/*.dae",
+]
+"share/ghostgui/models/assets-h2" = [
+    "models/assets-h2/*.stl",
+]
+"share/ghostgui/models/assets-z1" = [
+    "models/assets-z1/*.dae",
+]
+"share/ghostgui/gui/assets/theme" = [
+    "gui/assets/theme/*.svg",
+]
+"share/ghostgui/docs" = [
+    "docs/*.md",
+]

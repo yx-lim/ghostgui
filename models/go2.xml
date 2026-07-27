@@ -1,0 +1,103 @@
+<mujoco model="unitree_go2">
+  <compiler angle="radian"/>
+  <option timestep="0.002"/>
+  <visual>
+    <headlight ambient="0.45 0.45 0.45" diffuse="0.8 0.8 0.8" specular="0.25 0.25 0.25"/>
+    <rgba haze="0.12 0.15 0.20 1"/>
+    <global azimuth="135" elevation="-20"/>
+  </visual>
+  <asset>
+    <texture name="ground_tex" type="2d" builtin="checker" rgb1="0.18 0.20 0.24" rgb2="0.32 0.35 0.40" width="512" height="512"/>
+    <material name="ground_mat" texture="ground_tex" texrepeat="8 8" reflectance="0.15"/>
+  </asset>
+  <default>
+    <joint damping="0.1" armature="0.01"/>
+    <geom friction="0.8 0.1 0.1" condim="3"/>
+  </default>
+  <worldbody>
+    <light name="key_light" directional="true" pos="0 -2 3" dir="0 0.5 -1" diffuse="0.8 0.8 0.8"/>
+    <geom name="ground" type="plane" size="0 0 0.05" material="ground_mat" rgba="0.8 0.8 0.8 1"/>
+    <body name="base">
+      <freejoint name="floating_base"/>
+      <inertial pos="0.0201531 0 -0.00510896" quat="-0.000484971 0.713304 -0.00161969 0.700853" mass="7.279" diaginertia="0.112836 0.103121 0.0257104"/>
+      <geom name="base_body" size="0.1881 0.04675 0.057" type="box" rgba="0.72 0.76 0.84 1"/>
+      <geom name="head_upper" size="0.05 0.045" pos="0.285 0 0.01" type="cylinder" rgba="0.72 0.76 0.84 1"/>
+      <geom name="head_lower" size="0.047" pos="0.293 0 -0.06" rgba="0.72 0.76 0.84 1"/>
+
+      <body name="FL_hip" pos="0.1934 0.0465 0">
+        <inertial pos="-0.004756 0.00171489 -9.28162e-05" quat="0.497627 0.500003 0.504441 0.497899" mass="0.767" diaginertia="0.000998282 0.00065837 0.000539924"/>
+        <joint name="FL_hip_joint" axis="1 0 0" range="-1.0472 1.0472"/>
+        <geom name="FL_hip_geom" size="0.046 0.02" pos="0 0.08 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="0.28 0.32 0.38 1"/>
+        <body name="FL_thigh" pos="0 0.0955 0">
+          <inertial pos="-0.00115176 -0.0207007 -0.0303549" quat="0.622906 0.0767399 -0.0333173 0.777811" mass="1.241" diaginertia="0.00622804 0.00605116 0.00109601"/>
+          <joint name="FL_thigh_joint" axis="0 1 0" range="-1.5708 3.4907"/>
+          <geom name="FL_thigh_geom" size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="0.58 0.63 0.72 1"/>
+          <body name="FL_calf" pos="0 0 -0.213">
+            <inertial pos="0.00629595 -0.000622121 -0.141417" quat="0.710672 0.00154099 -0.00450087 0.703508" mass="0.241352" diaginertia="0.0014901 0.00146356 5.31397e-05"/>
+            <joint name="FL_calf_joint" axis="0 1 0" range="-2.7227 -0.83776"/>
+            <geom name="FL_calf_geom" size="0.012 0.1065" pos="0.008 0 -0.1065" quat="0.994493 0 -0.104807 0" type="capsule" rgba="0.16 0.19 0.24 1"/>
+            <geom name="FL_foot_geom" size="0.022" pos="-0.002 0 -0.213" rgba="0.05 0.06 0.08 1"/>
+            <site name="FL_foot" pos="-0.002 0 -0.213" size="0.012" rgba="0.95 0.35 0.08 1"/>
+          </body>
+        </body>
+      </body>
+
+      <body name="FR_hip" pos="0.1934 -0.0465 0">
+        <inertial pos="-0.00479081 -0.00171489 -9.28162e-05" quat="0.497915 0.504477 0.499987 0.497592" mass="0.767" diaginertia="0.000998028 0.000658115 0.000539924"/>
+        <joint name="FR_hip_joint" axis="1 0 0" range="-1.0472 1.0472"/>
+        <geom name="FR_hip_geom" size="0.046 0.02" pos="0 -0.08 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="0.28 0.32 0.38 1"/>
+        <body name="FR_thigh" pos="0 -0.0955 0">
+          <inertial pos="-0.0057918 0.0207007 -0.0303549" quat="0.512281 -0.0184867 0.0761773 0.855233" mass="1.241" diaginertia="0.0062377 0.00598212 0.00107542"/>
+          <joint name="FR_thigh_joint" axis="0 1 0" range="-1.5708 3.4907"/>
+          <geom name="FR_thigh_geom" size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="0.58 0.63 0.72 1"/>
+          <body name="FR_calf" pos="0 0 -0.213">
+            <inertial pos="0.00629595 0.000622121 -0.141417" quat="0.703508 -0.00450087 0.00154099 0.710672" mass="0.241352" diaginertia="0.0014901 0.00146356 5.31397e-05"/>
+            <joint name="FR_calf_joint" axis="0 1 0" range="-2.7227 -0.83776"/>
+            <geom name="FR_calf_geom" size="0.013 0.1065" pos="0.01 0 -0.1065" quat="0.995004 0 -0.0998334 0" type="capsule" rgba="0.16 0.19 0.24 1"/>
+            <geom name="FR_foot_geom" size="0.022" pos="-0.002 0 -0.213" rgba="0.05 0.06 0.08 1"/>
+            <site name="FR_foot" pos="-0.002 0 -0.213" size="0.012" rgba="0.95 0.35 0.08 1"/>
+          </body>
+        </body>
+      </body>
+
+      <body name="RL_hip" pos="-0.1934 0.0465 0">
+        <inertial pos="0.00479081 0.00171489 -9.28162e-05" quat="0.504477 0.497915 0.497592 0.499987" mass="0.767" diaginertia="0.000998028 0.000658115 0.000539924"/>
+        <joint name="RL_hip_joint" axis="1 0 0" range="-1.0472 1.0472"/>
+        <geom name="RL_hip_geom" size="0.046 0.02" pos="0 0.08 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="0.28 0.32 0.38 1"/>
+        <body name="RL_thigh" pos="0 0.0955 0">
+          <inertial pos="-0.00115176 -0.0207007 -0.0303549" quat="0.622906 0.0767399 -0.0333173 0.777811" mass="1.241" diaginertia="0.00622804 0.00605116 0.00109601"/>
+          <joint name="RL_thigh_joint" axis="0 1 0" range="-0.5236 4.5379"/>
+          <geom name="RL_thigh_geom" size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="0.58 0.63 0.72 1"/>
+          <body name="RL_calf" pos="0 0 -0.213">
+            <inertial pos="0.00629595 -0.000622121 -0.141417" quat="0.710672 0.00154099 -0.00450087 0.703508" mass="0.241352" diaginertia="0.0014901 0.00146356 5.31397e-05"/>
+            <joint name="RL_calf_joint" axis="0 1 0" range="-2.7227 -0.83776"/>
+            <geom name="RL_calf_geom" size="0.013 0.1065" pos="0.01 0 -0.1065" quat="0.995004 0 -0.0998334 0" type="capsule" rgba="0.16 0.19 0.24 1"/>
+            <geom name="RL_foot_geom" size="0.022" pos="-0.002 0 -0.213" rgba="0.05 0.06 0.08 1"/>
+            <site name="RL_foot" pos="-0.002 0 -0.213" size="0.012" rgba="0.95 0.35 0.08 1"/>
+          </body>
+        </body>
+      </body>
+
+      <body name="RR_hip" pos="-0.1934 -0.0465 0">
+        <inertial pos="0.004756 -0.00171489 -9.28162e-05" quat="0.500003 0.497627 0.497899 0.504441" mass="0.767" diaginertia="0.000998282 0.00065837 0.000539924"/>
+        <joint name="RR_hip_joint" axis="1 0 0" range="-1.0472 1.0472"/>
+        <geom name="RR_hip_geom" size="0.046 0.02" pos="0 -0.08 0" quat="0.707107 0.707107 0 0" type="cylinder" rgba="0.28 0.32 0.38 1"/>
+        <body name="RR_thigh" pos="0 -0.0955 0">
+          <inertial pos="-0.0057918 0.0207007 -0.0303549" quat="0.512281 -0.0184867 0.0761773 0.855233" mass="1.241" diaginertia="0.0062377 0.00598212 0.00107542"/>
+          <joint name="RR_thigh_joint" axis="0 1 0" range="-0.5236 4.5379"/>
+          <geom name="RR_thigh_geom" size="0.1065 0.01225 0.017" pos="0 0 -0.1065" quat="0.707107 0 0.707107 0" type="box" rgba="0.58 0.63 0.72 1"/>
+          <body name="RR_calf" pos="0 0 -0.213">
+            <inertial pos="0.00629595 0.000622121 -0.141417" quat="0.703508 -0.00450087 0.00154099 0.710672" mass="0.241352" diaginertia="0.0014901 0.00146356 5.31397e-05"/>
+            <joint name="RR_calf_joint" axis="0 1 0" range="-2.7227 -0.83776"/>
+            <geom name="RR_calf_geom" size="0.013 0.1065" pos="0.01 0 -0.1065" quat="0.995004 0 -0.0998334 0" type="capsule" rgba="0.16 0.19 0.24 1"/>
+            <geom name="RR_foot_geom" size="0.022" pos="-0.002 0 -0.213" rgba="0.05 0.06 0.08 1"/>
+            <site name="RR_foot" pos="-0.002 0 -0.213" size="0.012" rgba="0.95 0.35 0.08 1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <keyframe>
+    <key name="home" qpos="0 0 0.45 1 0 0 0 0 0.8 -1.5 0 0.8 -1.5 0 0.8 -1.5 0 0.8 -1.5"/>
+  </keyframe>
+</mujoco>

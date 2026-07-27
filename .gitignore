@@ -1,0 +1,84 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python packaging and build artifacts
+/build/
+/dist/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+# Test, coverage, type, and lint caches
+.pytest_cache/
+.mypy_cache/
+.pyright/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Local environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
+# Native build artifacts
+build/
+dist/
+*.egg-info/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+cmake-build-*/
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+
+# Editor and OS metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.directory
+
+# GhostGUI project workspaces
+/projects/*
+!/projects/.gitignore
+
+# Generated trajectory/export outputs
+pelvis_base_trajectory.csv
+pelvis_base_trajectory_uniform_dt.csv
+exports/
+output/
+outputs/
+
+# GhostGUI generated output directories
+/exports/
+/output/
+/outputs/
+/logs/
+*.log
+MUJOCO_LOG.TXT
+
+.github/workflows/
